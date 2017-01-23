@@ -15,6 +15,8 @@ import StatsFirstView from '../stats-first-view';
 import SidebarNavigation from 'my-sites/sidebar-navigation';
 import StatsNavigation from '../stats-navigation';
 import ActivityLogItem from '../activity-log/item';
+import SelectDropdown from 'components/select-dropdown';
+import SelectDropdownItem from 'components/select-dropdown/item';
 
 const ActivityLog = React.createClass( {
 
@@ -23,12 +25,20 @@ const ActivityLog = React.createClass( {
 	},
 
 	render() {
-		const { site } = this.props;
+		const { site, translate } = this.props;
 		return (
 			<Main wideLayout={ true }>
 				<StatsFirstView />
 				<SidebarNavigation />
 				<StatsNavigation section="activity" site={ site } />
+				<SelectDropdown selectedText={ translate( 'All Users' ) }>
+					<SelectDropdownItem>Enej</SelectDropdownItem>
+					<SelectDropdownItem>Jeff</SelectDropdownItem>
+					<SelectDropdownItem>Filipe</SelectDropdownItem>
+				</SelectDropdown>
+				<SelectDropdown selectedText={ translate( 'All Contexts' ) } />
+				<SelectDropdown selectedText={ translate( 'All Actions' ) } />
+				<SelectDropdown selectedText={ translate( 'All Time' ) } />
 				<ActivityLogItem />
 				<ActivityLogItem />
 				<ActivityLogItem />
