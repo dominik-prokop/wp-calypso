@@ -43,9 +43,13 @@ const ActivityLogItem = React.createClass( {
 
 		return (
 			<div className="activity-log-item__actor">
-				<Gravatar user={ user } size={ 18 } />
-				<div className="activity-item__actor-name">Vistor</div>
-				<div className="activity-item__actor-role">Vistor</div>
+				<div className="activity-log-item__actor-icon">
+					<Gravatar user={ user } size={ 48 } />
+				</div>
+				<div className="activity-log-item__actor-info">
+					<div className="activity-item__actor-name">John D.</div>
+					<div className="activity-item__actor-role">Admin</div>
+				</div>
 			</div>
 		);
 	},

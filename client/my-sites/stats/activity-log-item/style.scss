@@ -56,11 +56,27 @@
 	margin: auto;
 }
 
-
-
 .activity-log-item__actor {
-	background:yellow;
 	flex-basis: 25%;
+}
+
+.activity-log-item__actor-icon {
+	float: left;
+	margin-right: 16px;
+}
+
+.activity-log-item__actor-icon {
+	float: left;
+}
+
+.activity-item__actor-name {
+	font-weight: bold;
+}
+
+.activity-item__actor-role {
+	text-transform: uppercase;
+	font-size: 80%;
+	color: $gray;
 }
 
 .activity-log-item__content {

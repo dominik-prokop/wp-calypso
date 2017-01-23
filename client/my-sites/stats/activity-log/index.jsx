@@ -30,6 +30,7 @@ const ActivityLog = React.createClass( {
 				<SidebarNavigation />
 				<StatsNavigation section="activity" site={ site } />
 				<ActivityLogDate />
+				<ActivityLogDate />
 			</Main>
 		);
 	}
