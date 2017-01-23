@@ -1,4 +1,12 @@
 // Activity Log
-.select-dropdown {
-	display: inline;
+.activity-log-date {
+	.card {
+		.foldable-card__content {
+			background: #f3f6f8;
+		}
+	}
+
+	.foldable-card.card.is-expanded {
+		box-shadow: none;
+	}
 }
