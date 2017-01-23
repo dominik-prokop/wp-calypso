@@ -82,7 +82,16 @@
 .activity-log-item__content {
 	flex-basis: 50%;
 }
+.activity-item__content-title {
+	font-size: 14px;
+}
+.activity-item__content-sub-title {
+	font-size: 12px;
+	text-transform: uppercase;
+	color: $gray;
+}
 
 .activity-log-item__action {
 	flex-basis: 25%;
+	text-align:right;
 }
