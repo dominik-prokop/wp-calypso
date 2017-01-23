@@ -1,0 +1,72 @@
+.activity-log-item {
+	display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: center;
+}
+
+.activity-log-item__type {
+	flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 0;
+    width: 64px;
+    text-align:center;
+    border-left: 2px solid lighten( $gray, 30% );
+    height: 96px;
+    margin-left: 16px;
+    margin-right: 24px;
+    padding-top: 32px;
+}
+
+.activity-log-item__card.card {
+	display:flex;
+	width: 300px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 200px;
+}
+.activity-log-item__time {
+	font-size: 11px;
+	color: $gray;
+	text-align:center;
+	text-transform: uppercase;
+	margin-left: -16px;
+	background: $gray-light;
+}
+
+.activity-log-item__icons {
+	margin-left: -24px;
+	border-top: 4px solid $gray-light;
+	border-bottom: 4px solid $gray-light;
+	background: $gray-light;
+}
+
+.activity-log-item__icon {
+	background: $blue-wordpress;
+	 color: $white;
+	 display: flex;
+	 border-radius: 50%;
+	 height:32px;
+	 width: 32px;
+	 padding: 8px;
+}
+.activity-log-item__icon .gridicon {
+	margin: auto;
+}
+
+
+
+.activity-log-item__actor {
+	background:yellow;
+	flex-basis: 25%;
+}
+
+.activity-log-item__content {
+	flex-basis: 50%;
+}
+
+.activity-log-item__action {
+	flex-basis: 25%;
+}

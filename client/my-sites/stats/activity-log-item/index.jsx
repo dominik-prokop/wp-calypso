@@ -12,16 +12,25 @@ import Gridicon from 'components/gridicon';
 import Gravatar from 'components/gravatar';
 
 const ActivityLogItem = React.createClass( {
+	getTime() {
+		const {
+		} = this.props;
 
+		return (
+			<div className="activity-log-item__time">
+				4:21pm
+			</div>
+		);
+	},
 	getIcon() {
 		const {
 			icon,
 		} = this.props;
 
 		return (
-			<div className="activity-item__icons">
-				<div className="activity-item__icon">
-					<Gridicon icon={ icon || 'info-outline' } size={ 18 } />
+			<div className="activity-log-item__icons">
+				<div className="activity-log-item__icon">
+					<Gridicon icon={ icon || 'info-outline' } size={ 24 } />
 				</div>
 			</div>
 		);
@@ -33,8 +42,9 @@ const ActivityLogItem = React.createClass( {
 		} = this.props;
 
 		return (
-			<div className="activity-item__actor">
+			<div className="activity-log-item__actor">
 				<Gravatar user={ user } size={ 18 } />
+				<div className="activity-item__actor-name">Vistor</div>
 				<div className="activity-item__actor-role">Vistor</div>
 			</div>
 		);
@@ -45,9 +55,9 @@ const ActivityLogItem = React.createClass( {
 		} = this.props;
 
 		return (
-			<div className="activity-item__content">
+			<div className="activity-log-item__content">
 				<div className="activity-item__content-main">Tread found in Plugin</div>
-				<div className="activity-item__content-sub">Melware code detected...</div>
+				<div className="activity-item__content-sub">Malware code detected...</div>
 			</div>
 		);
 	},
@@ -57,19 +67,20 @@ const ActivityLogItem = React.createClass( {
 		} = this.props;
 
 		return (
-			<div className="activity-item__action">
+			<div className="activity-log-item__action">
 				<Button>Do Stuff</Button>
 			</div>
 		);
 	},
 
 	render() {
-		const classes = 'activity-item';
-
 		return (
-			<div className={ classes } >
+			<div className="activity-log-item" >
+				<div className="activity-log-item__type">
+				{ this.getTime() }
 				{ this.getIcon() }
-				<Card>
+				</div>
+				<Card className="activity-log-item__card">
 					{ this.getActor() }
 					{ this.getContent() }
 					{ this.getAction() }
