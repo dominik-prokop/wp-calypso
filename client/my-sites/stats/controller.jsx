@@ -439,5 +439,25 @@ module.exports = {
 				context.store
 			);
 		}
+	},
+
+	activity_log: function( context ) {
+		const siteId = context.params.site_id;
+
+		const ActivityComponent = require( 'my-sites/stats/activity-log' );
+
+		let site = sites.getSite( siteId );
+		if ( ! site ) {
+			site = sites.getSite( parseInt( siteId, 10 ) );
+		}
+
+		renderWithReduxStore(
+				React.createElement( ActivityComponent, {
+					site: site
+				} ),
+				document.getElementById( 'primary' ),
+				context.store
+			);
+
 	}
 };
