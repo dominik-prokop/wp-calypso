@@ -14,7 +14,7 @@ import { getSiteSlug } from 'state/sites/selectors';
 import StatsFirstView from '../stats-first-view';
 import SidebarNavigation from 'my-sites/sidebar-navigation';
 import StatsNavigation from '../stats-navigation';
-import ActivityLogDate from '../activity-log/date';
+import ActivityLogDate from '../activity-log-date';
 
 const ActivityLog = React.createClass( {
 
