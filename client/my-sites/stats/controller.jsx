@@ -443,7 +443,6 @@ module.exports = {
 
 	activity_log: function( context ) {
 		const siteId = context.params.site_id;
-
 		const ActivityComponent = require( 'my-sites/stats/activity-log' );
 
 		let site = sites.getSite( siteId );
@@ -458,6 +457,5 @@ module.exports = {
 				document.getElementById( 'primary' ),
 				context.store
 			);
-
 	}
 };
