@@ -25,7 +25,7 @@ const ActivityLog = React.createClass( {
 			<Main wideLayout={ true }>
 				<div id="my-stats-content">
 					<HeaderCake onClick={ this.goBack }>
-						{ translate( 'Activity Log' ) }
+						{ translate( 'Activity' ) }
 					</HeaderCake>
 				</div>
 			</Main>
