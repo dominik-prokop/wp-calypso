@@ -8,10 +8,13 @@ import { localize } from 'i18n-calypso';
 /**
  * Internal dependencies
  */
-import HeaderCake from 'components/header-cake';
 import Main from 'components/main';
 import { getSelectedSiteId } from 'state/ui/selectors';
 import { getSiteSlug } from 'state/sites/selectors';
+import StatsFirstView from '../stats-first-view';
+import SidebarNavigation from 'my-sites/sidebar-navigation';
+import StatsNavigation from '../stats-navigation';
+import ActivityLogItem from '../activity-log/item';
 
 const ActivityLog = React.createClass( {
 
@@ -20,14 +23,15 @@ const ActivityLog = React.createClass( {
 	},
 
 	render() {
-		const { translate } = this.props;
+		const { site } = this.props;
 		return (
 			<Main wideLayout={ true }>
-				<div id="my-stats-content">
-					<HeaderCake onClick={ this.goBack }>
-						{ translate( 'Activity' ) }
-					</HeaderCake>
-				</div>
+				<StatsFirstView />
+				<SidebarNavigation />
+				<StatsNavigation section="activity" site={ site } />
+				<ActivityLogItem />
+				<ActivityLogItem />
+				<ActivityLogItem />
 			</Main>
 		);
 	}
