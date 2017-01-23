@@ -16,7 +16,6 @@ import Button from 'components/button';
 import Gridicon from 'gridicons';
 import Gravatar from 'components/gravatar';
 
-
 class ActivityLogItem extends Component {
 
 	static propTypes = {
@@ -27,7 +26,7 @@ class ActivityLogItem extends Component {
 		user: PropTypes.object,
 		onClick: PropTypes.func,
 		actionText: PropTypes.string,
-		time:  PropTypes.string,
+		time: PropTypes.string,
 	};
 
 	static defaultProps = {
