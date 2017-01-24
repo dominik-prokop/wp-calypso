@@ -66,9 +66,12 @@ class ActivityLogItem extends Component {
 
 		return (
 			<div className="activity-log-item__actor">
-				<Gravatar user={ user } size={ 18 } />
-				{ user && <div className="activity-item__actor-name">{ user.name }</div> }
-				{ user && <div className="activity-item__actor-role">{ user.role }</div> }
+				<Gravatar  user={ user } size={ 48 } />
+				{ user && <div className="activity-log-item__actor-info">
+					<div className="activity-log-item__actor-name">{ user.name }</div>
+					<div className="activity-log-item__actor-role">{ user.role }</div>
+				</div>
+				}
 			</div>
 		);
 	}
@@ -82,7 +85,7 @@ class ActivityLogItem extends Component {
 		return (
 			<div className="activity-log-item__content">
 				<div className="activity-log-item__content-title">{ title }</div>
-				{ subTitle && <div className="activity-log-item__sub-title">{ subTitle }</div> }
+				{ subTitle && <div className="activity-item__content-sub-title">{ subTitle }</div> }
 			</div>
 		);
 	}
