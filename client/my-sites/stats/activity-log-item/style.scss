@@ -24,7 +24,7 @@
     flex-shrink: 0;
     flex-basis: 0;
     text-align:center;
-    margin-top: -16px;
+    margin-top: -18px;
     margin-right: 24px;
 }
 
@@ -34,8 +34,10 @@
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: 200px;
+    align-items: center;
 }
 .activity-log-item__time {
+	padding-top: 2px;
 	font-size: 11px;
 	color: $gray;
 	text-align:center;
@@ -63,7 +65,9 @@
 }
 
 .activity-log-item__actor {
+	display: flex;
 	flex-basis: 25%;
+	align-items: center;
 }
 
 .activity-log-item__actor .gravatar {
@@ -72,7 +76,7 @@
 }
 
 .activity-log-item__actor-name {
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .activity-item__actor-role {
