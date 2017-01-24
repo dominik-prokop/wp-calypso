@@ -37,6 +37,8 @@
     align-items: center;
 }
 .activity-log-item__time {
+	width: 106%;
+	margin-left: -3%;
 	padding-top: 2px;
 	font-size: 11px;
 	color: $gray;
