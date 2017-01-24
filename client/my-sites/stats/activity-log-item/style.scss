@@ -7,9 +7,15 @@
     align-items: center;
     position: relative;
     z-index: 2;
+    margin-left: 8px;
+    margin-bottom: 24px;
 
     .card {
     	background: $white;
+    }
+
+    &:first-of-type {
+    	margin-top: 24px;
     }
 }
 
@@ -17,12 +23,9 @@
 	flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 0;
-    width: 64px;
     text-align:center;
-    height: 96px;
-    margin-left: 16px;
+    margin-top: -16px;
     margin-right: 24px;
-    padding-top: 32px;
 }
 
 .activity-log-item__card.card {
@@ -37,13 +40,10 @@
 	color: $gray;
 	text-align:center;
 	text-transform: uppercase;
-	margin-left: -20px;
-	width: 20px;
 	background: $gray-light;
 }
 
 .activity-log-item__icons {
-	margin-left: -24px;
 	border-top: 4px solid $gray-light;
 	border-bottom: 4px solid $gray-light;
 	background: $gray-light;
