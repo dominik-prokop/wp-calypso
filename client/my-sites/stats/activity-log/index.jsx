@@ -29,9 +29,9 @@ const ActivityLog = React.createClass( {
 				<StatsFirstView />
 				<SidebarNavigation />
 				<StatsNavigation section="activity" site={ site } />
-				<section className="activity-log-wrapper">
-				<ActivityLogDate />
-				<ActivityLogDate />
+				<section className="activity-log__wrapper">
+					<ActivityLogDate />
+					<ActivityLogDate />
 				</section>
 			</Main>
 		);
