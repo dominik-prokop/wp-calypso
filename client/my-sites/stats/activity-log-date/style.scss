@@ -1,12 +1,26 @@
 // Activity Log
 .activity-log-date {
+	position: relative;
+	z-index: 2;
+
 	.card {
+		background: transparent;
+
 		.foldable-card__content {
-			background: #f3f6f8;
+			background: transparent;
 		}
+	}
+
+	.foldable-card__header {
+		background: $white;
 	}
 
 	.foldable-card.card.is-expanded {
 		box-shadow: none;
+
+		.foldable-card__header {
+			box-shadow: 0 0 0 1px transparentize( lighten( $gray, 20% ), .5 ),
+		0 1px 2px lighten( $gray, 30% );
+		}
 	}
 }
