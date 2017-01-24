@@ -26,7 +26,7 @@ class ActivityLogItem extends Component {
 		user: PropTypes.object,
 		onClick: PropTypes.func,
 		actionText: PropTypes.string,
-		time: PropTypes.string,
+		timestamp: PropTypes.number,
 	};
 
 	static defaultProps = {
@@ -35,12 +35,13 @@ class ActivityLogItem extends Component {
 
 	getTime() {
 		const {
-			time
+			moment,
+			timestamp
 		} = this.props;
 
 		return (
 			<div className="activity-log-item__time">
-				{ time }
+				{ moment( timestamp ).format( 'LT' ) }
 			</div>
 		);
 	}

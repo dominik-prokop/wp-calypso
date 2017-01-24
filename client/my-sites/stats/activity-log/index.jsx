@@ -72,7 +72,7 @@ const ActivityLog = React.createClass( {
 				<StatsFirstView />
 				<SidebarNavigation />
 				<StatsNavigation section="activity" site={ site } />
-				<section className="activity-log-wrapper">
+				<section className="activity-log__wrapper">
 					{ logsGroupsedByDate }
 				</section>
 			</Main>
