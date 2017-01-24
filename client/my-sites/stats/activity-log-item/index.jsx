@@ -4,9 +4,7 @@
 import React, { Component, PropTypes } from 'react';
 import { localize } from 'i18n-calypso';
 import classNames from 'classnames';
-import {
-	noop,
-} from 'lodash';
+import { noop } from 'lodash';
 
 /**
  * Internal dependencies
@@ -23,6 +21,7 @@ class ActivityLogItem extends Component {
 		subTitle: PropTypes.string,
 		className: PropTypes.string,
 		icon: PropTypes.string,
+		status: PropTypes.string,
 		user: PropTypes.object,
 		onClick: PropTypes.func,
 		actionText: PropTypes.string,
@@ -31,6 +30,7 @@ class ActivityLogItem extends Component {
 
 	static defaultProps = {
 		onClick: noop,
+		status: 'is-info'
 	};
 
 	getTime() {
@@ -49,11 +49,17 @@ class ActivityLogItem extends Component {
 	getIcon() {
 		const {
 			icon,
+			status
 		} = this.props;
+
+		const classes = classNames(
+			'activity-log-item__icon',
+			status
+		);
 
 		return (
 			<div className="activity-log-item__icons">
-				<div className="activity-log-item__icon">
+				<div className={ classes }>
 					<Gridicon icon={ icon || 'info-outline' } size={ 24 } />
 				</div>
 			</div>
@@ -62,17 +68,20 @@ class ActivityLogItem extends Component {
 
 	getActor() {
 		const {
-			user,
+			user
 		} = this.props;
+
+		if ( ! user ) {
+			return null;
+		}
 
 		return (
 			<div className="activity-log-item__actor">
 				<Gravatar  user={ user } size={ 48 } />
-				{ user && <div className="activity-log-item__actor-info">
+				<div className="activity-log-item__actor-info">
 					<div className="activity-log-item__actor-name">{ user.name }</div>
 					<div className="activity-log-item__actor-role">{ user.role }</div>
 				</div>
-				}
 			</div>
 		);
 	}

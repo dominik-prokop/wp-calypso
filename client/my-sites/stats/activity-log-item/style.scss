@@ -54,13 +54,29 @@
 }
 
 .activity-log-item__icon {
-	background: $blue-wordpress;
+	// General notice
+	 background: $gray;
 	 color: $white;
 	 display: flex;
 	 border-radius: 50%;
 	 height:32px;
 	 width: 32px;
 	 padding: 8px;
+
+	// Success
+	&.is-success {
+		background: $alert-green;
+	}
+
+	// Warning
+	&.is-warning {
+		background: $alert-yellow;
+	}
+
+	// Error! OHNO!
+	&.is-error {
+		background: $alert-red;
+	}
 }
 .activity-log-item__icon .gridicon {
 	margin: auto;
@@ -88,12 +104,13 @@
 }
 
 .activity-log-item__content {
-	flex-basis: 50%;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: 200px;
 }
 
 .activity-log-item__content-title {
 	font-size: 14px;
-	font-weight: 600;
 }
 .activity-item__content-sub-title {
 	font-size: 12px;
