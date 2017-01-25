@@ -18,7 +18,7 @@ import StatsNavigation from '../stats-navigation';
 import ActivityLogDate from '../activity-log-date';
 import QueryActivityLog from 'components/data/query-activity-log';
 import { getActivityLog, isFetchingActivityLog } from 'state/activity-log/selectors';
-
+import ActivityLogBanner from '../activity-log-banner';
 
 class ActivityLog extends Component {
 
@@ -121,6 +121,7 @@ class ActivityLog extends Component {
 				<StatsFirstView />
 				<SidebarNavigation />
 				<StatsNavigation section="activity" site={ site } />
+				<ActivityLogBanner logs={ logs } />
 				<section className="activity-log__wrapper">
 					{ logsGroupsedByDate }
 				</section>
