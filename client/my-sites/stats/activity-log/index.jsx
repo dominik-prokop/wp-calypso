@@ -109,9 +109,8 @@ class ActivityLog extends Component {
 	}
 
 	render() {
-		const { site } = this.props;
-		const logs = this.props.activityLog.data;
-
+		const { site, activityLog } = this.props;
+		const logs = ( activityLog && activityLog.data ? activityLog.data : [] );
 		const logsGroupsedByDate = map( groupBy( logs.map( this.update_logs, this ), ( log ) => new Date( log.timestamp ).toDateString() ), ( logs, timestamp ) => {
 			return <ActivityLogDate logs={ logs } key= { "activity-log-" + timestamp } />;
 		} );
