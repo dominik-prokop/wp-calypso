@@ -10,8 +10,10 @@ import { noop } from 'lodash';
  * Internal dependencies
  */
 import Card from 'components/card/compact';
-import Button from 'components/button';
 import Gridicon from 'gridicons';
+import EllipsisMenu from 'components/ellipsis-menu';
+import PopoverMenuItem from 'components/popover/menu-item';
+import PopoverMenuSeparator from 'components/popover/menu-separator';
 import Gravatar from 'components/gravatar';
 
 class ActivityLogItem extends Component {
@@ -103,12 +105,18 @@ class ActivityLogItem extends Component {
 	getAction() {
 		const {
 			onClick,
+			translate,
 			actionText
 		} = this.props;
 
 		return ( actionText &&
 			<div className="activity-log-item__action">
-				<Button compact primary onClick={ onClick }>{ actionText }</Button>
+				<EllipsisMenu position="bottom right">
+					<PopoverMenuItem onClick={ onClick} icon="undo">{ actionText }</PopoverMenuItem>
+					<PopoverMenuItem icon="pencil">Option B</PopoverMenuItem>
+					<PopoverMenuSeparator />
+					<PopoverMenuItem icon="help">{ translate( 'More Info' ) }</PopoverMenuItem>
+				</EllipsisMenu>
 			</div>
 		);
 	}
