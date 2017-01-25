@@ -52,12 +52,12 @@ class ActivityLog extends Component {
 			case 'plugin_activated':
 				log.subTitle = translate( 'Plugin Activated' );
 				log.icon = 'plugins';
-				log.actionText = 'Deactiavte';
+				log.actionText = 'Deactivate';
 				break;
 			case 'plugin_deactivated':
 				log.subTitle = translate( 'Plugin Deactivated' );
 				log.icon = 'plugins';
-				log.actionText = 'Actiavte';
+				log.actionText = 'Activate';
 				break;
 			case 'plugin_needs_update':
 				log.subTitle = translate( 'Plugin Update Available' );
