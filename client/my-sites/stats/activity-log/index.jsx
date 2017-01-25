@@ -16,6 +16,9 @@ import StatsFirstView from '../stats-first-view';
 import SidebarNavigation from 'my-sites/sidebar-navigation';
 import StatsNavigation from '../stats-navigation';
 import ActivityLogDate from '../activity-log-date';
+import QueryActivityLog from 'components/data/query-activity-log';
+import { getActivityLog, isFetchingActivityLog } from 'state/activity-log/selectors';
+
 
 class ActivityLog extends Component {
 
@@ -107,126 +110,7 @@ class ActivityLog extends Component {
 
 	render() {
 		const { site } = this.props;
-
-		const logs = [
-			{
-				title: 'Site has backed up',
-				user: null,
-				type: 'site_backed_up',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Site has backed up Failed',
-				user: null,
-				type: 'site_backed_up_failed',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Akismet activated',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'plugin_activated',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Akismet deactivated',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'plugin_deactivated',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Jetpack version 4.6 is available',
-				user: null,
-				type: 'plugin_needs_update',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Akismet updated to version 3.2',
-				user: null,
-				type: 'plugin_updated',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'This is some really cool post',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'theme_switched',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Twenty Sixteen updated to version 1.0.1',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'theme_updated',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Site updated to Professional Plan, Thank you',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'plan_updated',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Professional Plan Renewed for another month',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'plan_renewed',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Photon was activated',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'activate_jetpack_feature',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Custom CSS was deactivated',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'deactivate_jetpack_feature',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'This is some really cool post',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'site_backed_up',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'This is some really cool post',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'site_backed_up',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'This is some really cool post',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				type: 'site_backed_up',
-				timestamp: 1485220539222
-			},
-			{
-				title: 'Jetpack updated to 4.5.1',
-				subTitle: 'Plugin Update',
-				icon: 'plugins',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				time: '4:32pm',
-				actionText: 'Undo',
-				timestamp: 1483351202400
-			},
-			{
-				title: 'Jetpack updated to 4.5.1',
-				subTitle: 'Plugin Activated',
-				icon: 'plugins',
-				user: { ID: 123, name: 'Jane A', role: 'Admin' },
-				time: '4:32pm',
-				actionText: 'Undo',
-				timestamp: 1483351202420
-			},
-			{
-				title: 'Post Title',
-				subTitle: 'Post Updated',
-				icon: 'posts',
-				user: { ID: 333, name: 'Jane A', role: 'Admin' },
-				time: '10:55am',
-				actionText: 'Undo',
-				timestamp: 1483264820300
-			}
-		];
+		const logs = this.props.activityLog.data;
 
 		const logsGroupsedByDate = map( groupBy( logs.map( this.update_logs, this ), ( log ) => new Date( log.timestamp ).toDateString() ), ( logs, timestamp ) => {
 			return <ActivityLogDate logs={ logs } key= { "activity-log-" + timestamp } />;
@@ -240,14 +124,19 @@ class ActivityLog extends Component {
 				<section className="activity-log__wrapper">
 					{ logsGroupsedByDate }
 				</section>
+				<QueryActivityLog siteId={ site.ID } />
 			</Main>
 		);
 	}
 }
 
-export default connect( ( state ) => {
-	const siteId = getSelectedSiteId( state );
-	return {
-		slug: getSiteSlug( state, siteId )
-	};
-} )( localize( ActivityLog ) );
+export default connect(
+	( state ) => {
+		const siteId = getSelectedSiteId( state );
+		return {
+			slug: getSiteSlug( state, siteId ),
+			activityLog: getActivityLog( state, siteId ),
+			fetchingLog: isFetchingActivityLog( state, siteId )
+		};
+	}
+)( localize( ActivityLog ) );
