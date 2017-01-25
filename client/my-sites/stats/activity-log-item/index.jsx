@@ -79,7 +79,7 @@ class ActivityLogItem extends Component {
 
 		return (
 			<div className="activity-log-item__actor">
-				<Gravatar  user={ user } size={ 48 } />
+				<Gravatar user={ user } size={ 48 } />
 				<div className="activity-log-item__actor-info">
 					<div className="activity-log-item__actor-name">{ user.name }</div>
 					<div className="activity-log-item__actor-role">{ user.role }</div>
@@ -97,7 +97,7 @@ class ActivityLogItem extends Component {
 		return (
 			<div className="activity-log-item__content">
 				<div className="activity-log-item__content-title">{ title }</div>
-				{ subTitle && <div className="activity-item__content-sub-title">{ subTitle }</div> }
+				{ subTitle && <div className="activity-log-item__content-sub-title">{ subTitle }</div> }
 			</div>
 		);
 	}
@@ -112,7 +112,7 @@ class ActivityLogItem extends Component {
 		return ( actionText &&
 			<div className="activity-log-item__action">
 				<EllipsisMenu position="bottom right">
-					<PopoverMenuItem onClick={ onClick} icon="undo">{ actionText }</PopoverMenuItem>
+					<PopoverMenuItem onClick={ onClick } icon="undo">{ actionText }</PopoverMenuItem>
 					<PopoverMenuItem icon="pencil">Option B</PopoverMenuItem>
 					<PopoverMenuSeparator />
 					<PopoverMenuItem icon="help">{ translate( 'More Info' ) }</PopoverMenuItem>
