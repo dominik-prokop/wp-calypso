@@ -111,9 +111,14 @@ class ActivityLog extends Component {
 	render() {
 		const { site, activityLog } = this.props;
 		const logs = ( activityLog && activityLog.data ? activityLog.data : [] );
-		const logsGroupsedByDate = map( groupBy( logs.map( this.update_logs, this ), ( log ) => new Date( log.timestamp ).toDateString() ), ( logs, timestamp ) => {
-			return <ActivityLogDate logs={ logs } key= { "activity-log-" + timestamp } />;
-		} );
+		const logsGroupsedByDate = map(
+				groupBy(
+					logs.map( this.update_logs, this ),
+					( log ) => new Date( log.timestamp ).toDateString()
+				),
+				( daily_logs, timestamp ) => {
+					return <ActivityLogDate logs={ daily_logs } key= { 'activity-log-' + timestamp } />;
+				} );
 
 		return (
 			<Main wideLayout={ true }>
