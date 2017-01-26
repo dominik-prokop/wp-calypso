@@ -8,14 +8,32 @@
     position: relative;
     z-index: 2;
     margin-left: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 8px;
 
     .card {
-    	background: $white;
+		width: 300px;
+		flex-grow: 1;
+		flex-shrink: 0;
+		flex-basis: 200px;
+		align-items: center;
+		background: $white;
     }
 
     &:first-of-type {
     	margin-top: 24px;
+    }
+
+    .activity-log-item__card .foldable-card__content {
+    	padding: 16px;
+    	font-size: 14px;
+    }
+
+    .foldable-card .foldable-card__expand .gridicon {
+    	transform: none;
+	}
+
+    .foldable-card.is-expanded .foldable-card__expand .gridicon {
+    	transform: rotate(180deg);
     }
 }
 
@@ -23,19 +41,12 @@
 	flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 0;
+    align-self: flex-start;
     text-align:center;
-    margin-top: -18px;
+    margin-top: -5px;
     margin-right: 24px;
 }
 
-.activity-log-item__card.card {
-	display:flex;
-	width: 300px;
-    flex-grow: 1;
-    flex-shrink: 0;
-    flex-basis: 200px;
-    align-items: center;
-}
 .activity-log-item__time {
 	width: 106%;
 	margin-left: -3%;
@@ -80,6 +91,13 @@
 }
 .activity-log-item__icon .gridicon {
 	margin: auto;
+}
+
+
+.activity-log-item__card-header {
+	display: flex;
+	flex: 1;
+	align-items: center;
 }
 
 .activity-log-item__actor {

@@ -9,8 +9,8 @@ import { noop } from 'lodash';
 /**
  * Internal dependencies
  */
-import Card from 'components/card/compact';
 import Gridicon from 'gridicons';
+import FoldableCard from 'components/foldable-card';
 import EllipsisMenu from 'components/ellipsis-menu';
 import PopoverMenuItem from 'components/popover/menu-item';
 import PopoverMenuSeparator from 'components/popover/menu-separator';
@@ -28,6 +28,7 @@ class ActivityLogItem extends Component {
 		onClick: PropTypes.func,
 		actionText: PropTypes.string,
 		timestamp: PropTypes.number,
+		description: PropTypes.string,
 	};
 
 	static defaultProps = {
@@ -102,6 +103,10 @@ class ActivityLogItem extends Component {
 		);
 	}
 
+	toggleEllipsis = ( toggleVisibility, event ) => {
+		event.stopPropagation();
+	};
+
 	getAction() {
 		const {
 			onClick,
@@ -111,13 +116,23 @@ class ActivityLogItem extends Component {
 
 		return ( actionText &&
 			<div className="activity-log-item__action">
-				<EllipsisMenu position="bottom right">
+				<EllipsisMenu position="bottom right" onToggle={ this.toggleEllipsis }>
 					<PopoverMenuItem onClick={ onClick } icon="undo">{ actionText }</PopoverMenuItem>
 					<PopoverMenuItem icon="pencil">Option B</PopoverMenuItem>
 					<PopoverMenuSeparator />
 					<PopoverMenuItem icon="help">{ translate( 'More Info' ) }</PopoverMenuItem>
 				</EllipsisMenu>
 			</div>
+		);
+	}
+
+	getDetails() {
+		const {
+			description
+		} = this.props;
+
+		return( description &&
+			<div>{ description }</div>
 		);
 	}
 
@@ -136,11 +151,15 @@ class ActivityLogItem extends Component {
 				{ this.getTime() }
 				{ this.getIcon() }
 				</div>
-				<Card className="activity-log-item__card">
-					{ this.getActor() }
-					{ this.getContent() }
-					{ this.getAction() }
-				</Card>
+				<FoldableCard
+					className="activity-log-item__card"
+					header={ <div className="activity-log-item__card-header">{ this.getActor() } { this.getContent() }</div> }
+					summary={ this.getAction() }
+					expandedSummary={ this.getAction() }
+					clickableHeader={ true }
+				>
+					{ this.getDetails() }
+				</FoldableCard>
 			</div>
 		);
 	}
