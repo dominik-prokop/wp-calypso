@@ -23,9 +23,16 @@
     	margin-top: 24px;
     }
 
+    &.is-disabled {
+    	.card {
+    		opacity: .55;
+    	}
+    }
+
     .activity-log-item__card .foldable-card__content {
     	padding: 16px;
     	font-size: 14px;
+    	color: darken( $gray, 20% );
     }
 
     .foldable-card .foldable-card__expand .gridicon {
@@ -33,7 +40,7 @@
 	}
 
     .foldable-card.is-expanded .foldable-card__expand .gridicon {
-    	transform: rotate(180deg);
+    	transform: rotate( 180deg );
     }
 
     .foldable-card__main {
