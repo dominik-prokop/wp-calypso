@@ -65,7 +65,7 @@ class ActivityLog extends Component {
 				log.status = 'is-warning';
 				log.actionText = 'Update';
 				break;
-			case 'suspecious_code':
+			case 'suspicious_code':
 				log.subTitle = translate( 'Security Scan' );
 				log.icon = 'notice';
 				log.status = 'is-error';
