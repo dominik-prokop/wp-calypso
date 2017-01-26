@@ -65,6 +65,12 @@ class ActivityLog extends Component {
 				log.status = 'is-warning';
 				log.actionText = 'Update';
 				break;
+			case 'suspecious_code':
+				log.subTitle = translate( 'Security Scan' );
+				log.icon = 'notice';
+				log.status = 'is-error';
+				log.actionText = 'Fix';
+				break;
 			case 'plugin_updated':
 				log.subTitle = translate( 'Plugin Updated' );
 				log.icon = 'plugins';
