@@ -13,6 +13,9 @@ import {
 	LOGIN_REQUEST,
 	LOGIN_REQUEST_FAILURE,
 	LOGIN_REQUEST_SUCCESS,
+	LOGIN_2FA_VERIFICATION_CODE_SEND_REQUEST,
+	LOGIN_2FA_VERIFICATION_CODE_SEND_REQUEST_FAILURE,
+	LOGIN_2FA_VERIFICATION_CODE_SEND_REQUEST_SUCCESS,
 } from 'state/action-types';
 
 const loginErrorMessages = {
@@ -67,4 +70,44 @@ export const loginUser = ( usernameOrEmail, password ) => dispatch => {
 
 			return Promise.reject( errorMessage );
 		} );
+};
+
+/**
+ * Attempt to login a user when a two factor verification code is sent.
+ *
+ * @param  {Number}    twostep_id            Id of the user trying to log in.
+ * @param  {String}    twostep_code  Verification code for the user.
+ * @param  {String}    twostep_nonce              Nonce generated for verification code submission.
+ * @param  {Boolean}   remember           Flag for remembering the user for a while after logging in.
+ * @return {Function}                     Action thunk to trigger the login process.
+ */
+export const loginUserWithTwoFactorVerificationCode = ( twostep_id, twostep_code, twostep_nonce, remember ) => {
+	return ( dispatch ) => {
+		dispatch( {
+			type: LOGIN_2FA_VERIFICATION_CODE_SEND_REQUEST,
+			twostep_id,
+			twostep_code,
+			twostep_nonce,
+			remember
+		} );
+
+		return Promise.resolve( twostep_id, twostep_code, twostep_nonce, remember )
+			.then( ( data ) => {
+				dispatch( {
+					type: LOGIN_2FA_VERIFICATION_CODE_SEND_REQUEST_SUCCESS,
+					twostep_id,
+					twostep_code,
+					twostep_nonce,
+					data,
+				} );
+			} ).catch( ( error ) => {
+				dispatch( {
+					type: LOGIN_2FA_VERIFICATION_CODE_SEND_REQUEST_FAILURE,
+					twostep_id,
+					twostep_code,
+					twostep_nonce,
+					error: error.message
+				} );
+			} );
+	};
 };
