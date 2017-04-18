@@ -76,6 +76,23 @@ const updatedSelectedSiteForKeyboardShortcuts = ( dispatch, action, getState ) =
 	keyboardShortcuts.setSelectedSite( selectedSite );
 };
 
+/*
+ * Here be dragons.
+ */
+let _queue = [];
+
+const receiveSitesChangeListener = ( dispatch, { listener } ) => {
+	debug( 'receiveSitesChangeListener' );
+	_queue.push( listener );
+};
+
+const fireChangeListeners = () => {
+	debug( 'firing', _queue.length, 'emitters' );
+	_queue.forEach( ( listener ) => listener() );
+	_queue = [];
+};
+
+
 const handler = ( dispatch, action, getState ) => {
 	switch ( action.type ) {
 		case ANALYTICS_SUPER_PROPS_UPDATE:
@@ -88,33 +105,17 @@ const handler = ( dispatch, action, getState ) => {
 			// Wait a tick for the reducer to update the state tree
 			setTimeout( () => {
 				updateSelectedSiteForCart( dispatch, action, getState );
+				if ( action.type === SITES_RECEIVE ) {
+					fireChangeListeners();
+				}
 				if ( keyBoardShortcutsEnabled ) {
 					updatedSelectedSiteForKeyboardShortcuts( dispatch, action, getState );
 				}
 			}, 0 );
+		case SITES_ONCE_CHANGED:
+			receiveSitesChangeListener( dispatch, action );
 			return;
 	}
-};
-
-/*
- * Here be dragons.
- */
-let _queue = [];
-const receiveSitesChangeListener = ( dispatch, { listener } ) => {
-	debug( 'receiveSitesChangeListener' );
-	_queue.push( listener );
-};
-
-const fireChangeListeners = () => {
-	debug( 'firing', _queue.length, 'emitters' );
-	_queue.forEach( ( listener ) => listener() );
-	_queue = [];
-};
-
-export const handlers = {
-	[ ANALYTICS_SUPER_PROPS_UPDATE ]: updateSelectedSiteForAnalytics,
-	[ SITES_ONCE_CHANGED ]: receiveSitesChangeListener,
-	[ SITES_RECEIVE ]: fireChangeListeners,
 };
 
 export const libraryMiddleware = ( { dispatch, getState } ) => ( next ) => ( action ) => {
