@@ -112,6 +112,7 @@ const handler = ( dispatch, action, getState ) => {
 					updatedSelectedSiteForKeyboardShortcuts( dispatch, action, getState );
 				}
 			}, 0 );
+			return;
 		case SITES_ONCE_CHANGED:
 			receiveSitesChangeListener( dispatch, action );
 			return;
