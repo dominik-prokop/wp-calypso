@@ -147,6 +147,6 @@ export isTwoStepSmsEnabled from './is-two-step-sms-enabled';
 export isUpdatingJetpackSettings from './is-updating-jetpack-settings';
 export isUserRegistrationDaysWithinRange from './is-user-registration-days-within-range';
 export isUserSettingUnsaved from './is-user-setting-unsaved';
-export isWordpressUpdateSuccesful from './is-wordpress-update-successful';
+export isWordpressUpdateSuccessful from './is-wordpress-update-successful';
 export shouldCloseVideoEditorModal from './should-close-video-editor-modal';
 export shouldShowVideoEditorError from './should-show-video-editor-error';
